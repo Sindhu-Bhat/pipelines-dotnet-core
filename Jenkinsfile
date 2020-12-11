@@ -6,7 +6,7 @@ dotnet = 'path\\to\\dotnet.exe'
 stages {
 stage ('Checkout') {
             steps {
-                 git url: 'https://github.com/Sindhu-Bhat/pipelines-dotnet-core',branch: 'master'
+                 git url: 'https://github.com/arjunachari12/pipelines-dotnet-core',branch: 'master'
             }
 }
 stage ('Restore PACKAGES') {     
