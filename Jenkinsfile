@@ -11,9 +11,10 @@ stage ('Checkout') {
 }
 stage ('Restore PACKAGES') {     
          steps {
-             batch "dotnet restore"
+             bat "dotnet restore"
           }
         }
+
 stage('Build') {
      steps {
             bat 'dotnet build --configuration Release'
@@ -21,8 +22,16 @@ stage('Build') {
    }
    stage('Publish') {
      steps {
-           bat 'dotnet publish  --configuration Release'
+           bat 'dotnet publish pipelines-dotnet-core.csproj -c Release'
       }
    }
+
+    stage('deploy') {
+        steps {
+        azureWebAppPublish azureCredentialsId: params.azure_cred_id,
+            resourceGroup: "myResourceGroup", appName: "jenkinssample", sourceDirectory: "bin/Release/netcoreapp2.2/publish/"
+        }
+    }
+
  }
 }
