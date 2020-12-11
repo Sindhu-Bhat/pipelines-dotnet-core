@@ -11,7 +11,7 @@ stage ('Checkout') {
 }
 stage ('Restore PACKAGES') {     
          steps {
-             batch "dotnet restore"
+             bat "dotnet restore"
           }
         }
 
